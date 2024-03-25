@@ -17,3 +17,8 @@ Route::apiResource("/posts",App\Http\Controllers\Api\PostController::class);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::apiResource('/posts', App\Http\Controllers\Api\PostController::class)->middleware('hak-akses');
+Route::post('login', [App\Http\Controllers\Api\AuthController::class, 'signin']);
+Route::post('register', [App\Http\Controllers\Api\AuthController::class, 'signup']);
+Route::get('/posts', [App\Http\Controllers\Api\PostController::class,'index'])->middleware(['auth:sanctum','hak-akses:admin']);
+Route::get('/posts/:id', [App\Http\Controllers\Api\PostController::class, 'show'])->middleware('auth:sanctum');
