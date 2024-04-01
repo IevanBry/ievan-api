@@ -22,3 +22,4 @@ Route::post('login', [App\Http\Controllers\Api\AuthController::class, 'signin'])
 Route::post('register', [App\Http\Controllers\Api\AuthController::class, 'signup']);
 Route::get('/posts', [App\Http\Controllers\Api\PostController::class,'index'])->middleware(['auth:sanctum','hak-akses:admin']);
 Route::get('/posts/:id', [App\Http\Controllers\Api\PostController::class, 'show'])->middleware('auth:sanctum');
+Route::apiResource('/posts', App\Http\Controllers\Api\postController::class);
