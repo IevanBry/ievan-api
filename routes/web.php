@@ -17,3 +17,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::apiResource('/posts',App\Http\Controllers\postController::class);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/logout',[App\Http\Controllers\Api\AuthController::class, 'logout']);

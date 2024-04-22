@@ -1,3 +1,9 @@
+@extends('layouts.main')
+@section('tittle','List Data Post')
+@section('button_header')
+<a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app" id="btn-create-post">Create</a>
+@endsection
+@section('judul_header','Data Post')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,11 +17,36 @@
             background-color: lightgray !important;
         }
     </style>
+    @section('css')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @endsection
+    @section('js')
+    <script src="{{ url('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
+    <script>
+        $("#kt_datatable_example_5").DataTable({
+            "language": {
+                "lengthMenu": "Show _MENU_",
+            },
+            "dom":
+            "<'row'" +
+            "<'col-sm-6 d-flex align-items-center justify-content-start'i>" +
+            "<'col-sm-6 d-flex align-items-center justify-content-end'f>" +
+            ">" +
+
+            "<'table-responsive'tr>" +
+
+            "<'row'" +
+            "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+            "<'col-sm-12 col-md-7 d-felx align-items-center justify-content-center justify-content-md-end'p>" +
+            ">"
+        });
+    </script>
+    @endsection
 </head>
 <body>
+@section('content')
     <div class="container" style="margin-top: 50px">
         <div class="row">
             <div class="col-md-12">
@@ -23,7 +54,7 @@
                 <div class="card border-0 shadow-sm rounded-md mt-4">
                     <div class="card-body">
                         <a href="javascript:void(0)" class="btn btn-success mb-2" id="btn-create-post">TAMBAH</a>
-                        <table class="table table-bordered table-striped">
+                        <table id="kt_datatable_example_5" class="table table-stripped table-row-bordered gy-5 gs-7 border rounded">
                             <thead>
                                 <tr>
                                     <th>Title</th>
@@ -54,5 +85,6 @@
     @include('post.modal-create')
     @include('post.update')
     @include('post.delete')
+@endsection
 </body>
 </html>
